@@ -17,6 +17,8 @@ public class MemberDao {
 	 */
 	public boolean join(HttpServletRequest request) {
 		
+		
+		
 		return true;
 	}
 }
