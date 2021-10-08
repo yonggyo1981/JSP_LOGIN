@@ -56,6 +56,7 @@ public class CommonFilter implements Filter {
 	
 	/** 헤더, 푸터를 출력해도 되는지 체크하는 메서드 */
 	public boolean isPrintOk(ServletRequest request) {
+		
 		/**
 		 * 1. 요청 method이 GET이 아닌 경우 출력 제외(return false) (O)
 		 * 			HttpServletRequest  -  getMethod()
@@ -65,7 +66,7 @@ public class CommonFilter implements Filter {
 		 */
 		if (request instanceof HttpServletRequest) {
 			HttpServletRequest req = (HttpServletRequest)request;
-			if (req.getMethod().toUpperCase() != "GET") {
+			if (!req.getMethod().toUpperCase().equals("GET")) {
 				return false;
 			}
 			
