@@ -1,0 +1,9 @@
+CREATE TABLE member (
+	memNo INTEGER AUTO_INCREMENT,
+    memId VARCHAR(20) NOT NULL,
+    memPw VARCHAR(65) NOT NULL,
+    memNm VARCHAR(30) NOT NULL,
+    regDt DATETIME DEFAULT NOW(),
+    UNIQUE (memId),
+    PRIMARY KEY(memNo)
+);
