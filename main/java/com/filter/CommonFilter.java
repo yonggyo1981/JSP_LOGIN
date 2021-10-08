@@ -39,15 +39,19 @@ public class CommonFilter implements Filter {
 	
 	/** 헤더 HTML 출력 */
 	public void printHeader(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=utf-8");
-		RequestDispatcher rd = request.getRequestDispatcher("/outline/header.jsp");
-		rd.include(request, response);
+		if (isPrintOk(request)) { // 출력 가능 조건일때만 출력 
+			response.setContentType("text/html; charset=utf-8");
+			RequestDispatcher rd = request.getRequestDispatcher("/outline/header.jsp");
+			rd.include(request, response);
+		}
 	}
 	
 	/** 푸터 HTML 출력 */
 	public void printFooter(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/outline/footer.jsp");
-		rd.include(request, response);
+		if (isPrintOk(request)) {
+			RequestDispatcher rd = request.getRequestDispatcher("/outline/footer.jsp");
+			rd.include(request, response);
+		}
 	}
 	
 	/** 헤더, 푸터를 출력해도 되는지 체크하는 메서드 */
