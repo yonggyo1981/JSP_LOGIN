@@ -17,7 +17,9 @@ public class LoginController extends HttpServlet {
 	/** 로그인 양식 */
 	@Override 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("text/html; charset=utf-8");
+		RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
+		rd.include(request, response);
 	}
 	
 	/** 로그인 처리 */

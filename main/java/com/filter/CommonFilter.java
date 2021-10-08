@@ -28,6 +28,10 @@ public class CommonFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
 		
+		/** 기준 URI */
+		String siteURL = request.getServletContext().getContextPath();
+		request.setAttribute("siteURL", siteURL);
+		
 		// 헤더 출력
 		printHeader(request, response);
 		
