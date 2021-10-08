@@ -15,6 +15,12 @@ public class DB {
 	private static String password;
 	
 	public static void init(FilterConfig config) {
+		init(
+				config.getInitParameter("DBDriver"),
+				config.getInitParameter("DBUrl"),
+				config.getInitParameter("DBUser"),
+				config.getInitParameter("DBPass")
+		);
 		
 	}
 	
@@ -23,5 +29,12 @@ public class DB {
 		DB.url = url;
 		DB.user = user;
 		DB.password = password;
+	}
+		
+	public static Connection getConnection() throws ClassNotFoundException, SQLException {
+		Class.forName(driver);
+		Connection conn = DriverManager.getConnection(url, user, password);
+		
+		return conn;
 	}
 }
