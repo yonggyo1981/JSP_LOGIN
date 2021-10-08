@@ -27,6 +27,10 @@
 			<param-value>com.mysql.cj.jdbc.Driver</param-value>
 		</init-param>
 		<init-param>
+			<param-name>DBUrl</param-name>
+			<param-value>jdbc:mysql://localhost:3306/JSPBookDB</param-value>
+		</init-param>
+		<init-param>
 			<param-name>DBUser</param-name>
 			<param-value>root</param-value>
 		</init-param>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
+import com.core.DB;
+
 /**
  * 사이트 공통 필터
  *
@@ -22,7 +24,7 @@ public class CommonFilter implements Filter {
 	
 	@Override 
 	public void init(FilterConfig filterConfig) {
-		
+		DB.init(filterConfig);
 	}
 	
 	@Override
