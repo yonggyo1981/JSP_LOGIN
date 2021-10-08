@@ -36,9 +36,9 @@ public class MemberDao {
 			pstmt.setString(2, hash);
 			pstmt.setString(3, memNm);
 			
-			//int result = pstmt.executeUpdate();
-			//if (result < 1) 
-			//	return false;
+			int result = pstmt.executeUpdate();
+			if (result < 1) 
+				return false;
 			
 			/*
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -63,7 +63,7 @@ public class MemberDao {
 	 */
 	public void checkJoinData(HttpServletRequest request) throws AlertException {
 		/**
-		 * 0. 필수 항목 체크(아이디, 비밀번호, 비밀번호 확인, 회원명)
+		 * 0. 필수 항목 체크(아이디, 비밀번호, 비밀번호 확인, 회원명) - O 
 		 * 1. 아이디 자리수(6~20), 영문, 숫자만 허용
 		 * 2. 비밀번호 자리수(8자리 이상), 복잡성(최소 영문1개 이상, 최소 숫자1개 이상, 최소 특수문자 1개 이상
 		 * 3. 아이디 중복 여부 체크
@@ -85,5 +85,11 @@ public class MemberDao {
 			}
 		}
 		/** 필수 항목 체크 E */
+		/** 아이디 자리수, 영문 숫자로만 구성 체크 S */
+		String memId = request.getParameter("memId").trim();
+		if (memId.length() < 6 || memId.length() > 20 || memId.matches("[^a-zA-Z0-9]")) {
+			throw new AlertException("아이디는 영문자,숫자 6자리 이상 20자리 이하로 입력해 주세요.");
+		}
+		/** 아이디 자리수 체크 E */
 	}
 }
