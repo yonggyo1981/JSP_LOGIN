@@ -9,5 +9,13 @@
 		<servlet-name>Member Join</servlet-name>
 		<url-pattern>/member/join</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Member Login</servlet-name>
+		<servlet-class>com.controller.member.LoginController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Member Login</servlet-name>
+		<url-pattern>/member/login</url-pattern>
+	</servlet-mapping>
 	<!--  서블릿 E  -->
 </web-app>
