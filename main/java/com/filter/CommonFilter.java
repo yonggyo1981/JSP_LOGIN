@@ -15,6 +15,10 @@ import java.io.IOException;
  */
 public class CommonFilter implements Filter {
 	
+	// 정적 경로 -> 헤더, 푸터 출력 X 
+	private String[] staticDirs = {"public"};
+	
+	
 	@Override 
 	public void init(FilterConfig filterConfig) {
 		
@@ -34,6 +38,7 @@ public class CommonFilter implements Filter {
 	
 	/** 헤더 HTML 출력 */
 	public void printHeader(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher rd = request.getRequestDispatcher("/outline/header.jsp");
 		rd.include(request, response);
 	}
@@ -42,6 +47,19 @@ public class CommonFilter implements Filter {
 	public void printFooter(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/outline/footer.jsp");
 		rd.include(request, response);
+	}
+	
+	/** 헤더, 푸터를 출력해도 되는지 체크하는 메서드 */
+	public boolean isPrintOk(ServletRequest request) {
+		/**
+		 * 1. 요청 method이 GET이 아닌 경우 출력 제외(return false)
+		 * 			HttpServletRequest  -  getMethod()
+		 * 2.정적 경로인 경우 헤더 푸터 출력 제외(return false)
+		 *  	   URI에 정적 경로가 포함되어 있으면 false
+		 *  		HttpServletRequest - getRequestURI();
+		 */
+		
+		return true;
 	}
 }
 
