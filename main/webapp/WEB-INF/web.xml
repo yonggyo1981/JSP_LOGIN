@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<web-app>
+	<!--  서블릿 S  -->
+	<servlet>
+		<servlet-name>Member Join</servlet-name>
+		<servlet-class>com.controller.member.JoinController</servlet-class>	
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Member Join</servlet-name>
+		<url-pattern>/member/join</url-pattern>
+	</servlet-mapping>
+	<!--  서블릿 E  -->
+</web-app>
