@@ -36,9 +36,9 @@ public class MemberDao {
 			pstmt.setString(2, hash);
 			pstmt.setString(3, memNm);
 			
-			int result = pstmt.executeUpdate();
-			if (result < 1) 
-				return false;
+			//int result = pstmt.executeUpdate();
+			//if (result < 1) 
+			//	return false;
 			
 			/*
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -71,14 +71,15 @@ public class MemberDao {
 		 */
 		/** 필수 항목 체크 S */
 		String[] required = {
-			"memId||아이디를 입력하세요",
-			"memPw||비밀번호를 입력하세요",
-			"memPwRe||비밀번호를 확인해 주세요",
-			"memNm||회원명을 입력하세요"
+			"memId/아이디를 입력하세요",
+			"memPw/비밀번호를 입력하세요",
+			"memPwRe/비밀번호를 확인해 주세요",
+			"memNm/회원명을 입력하세요"
 		};
+		
 		for (String s : required) {
-			String[] re = s.split("||");
-			if (request.getParameter(re[0]) == null) { // 필수 항목 누락일때 
+			String[] re = s.split("/");
+			if (request.getParameter(re[0]) == null || request.getParameter(re[0]).trim().equals("")) { // 필수 항목 누락일때 
 				throw new AlertException(re[1]);
 			}
 		}
