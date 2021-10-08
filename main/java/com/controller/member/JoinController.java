@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.models.dao.MemberDao;
+import com.exception.AlertException;
 
 /**
  * 회원 가입 
@@ -27,8 +29,15 @@ public class JoinController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		MemberDao dao = new MemberDao();
-		dao.join(request);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		try {
+			MemberDao dao = new MemberDao();
+			dao.join(request);
+		} catch (AlertException e) {
+			out.print("<script>alert('" + e.getMessage() + "');</script>");
+			return;
+		}
 	}
 }
 
