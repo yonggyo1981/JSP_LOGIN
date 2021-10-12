@@ -30,9 +30,23 @@ public class MemberDao {
 		 *     request.setAttribute ....
 		 */
 		
+		Member member = null;
+		boolean isLogin = false;
 		if (request instanceof HttpServletRequest) {
 			HttpServletRequest req = (HttpServletRequest)request;
-		}
+			HttpSession session = req.getSession();
+			int memNo = (Integer)session.getAttribute("memNo");
+			if (memNo > 0) { // 로그인 상태
+				MemberDao dao = new MemberDao();
+				member = dao.get(memNo);
+				if (member != null) {
+					isLogin = true;
+				}
+			} // endif 
+		} // endif 
+		
+		request.setAttribute("member", member);
+		request.setAttribute("isLogin", isLogin);
 	}
 	
 	/**
