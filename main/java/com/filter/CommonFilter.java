@@ -20,7 +20,7 @@ import com.models.dao.MemberDao;
 public class CommonFilter implements Filter {
 	
 	// 정적 경로 -> 헤더, 푸터 출력 X 
-	private String[] staticDirs = {"public"};
+	private String[] staticDirs = {"public", "logout"};
 	
 	
 	@Override 

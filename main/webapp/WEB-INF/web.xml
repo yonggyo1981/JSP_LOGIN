@@ -25,6 +25,14 @@
 		<servlet-name>Main</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>com.controller.member.LogoutController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/member/logout</url-pattern>
+	</servlet-mapping>
 	<!--  서블릿 E  -->
 	<!--  필터 S -->
 	<filter>
