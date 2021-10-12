@@ -23,7 +23,16 @@ public class MemberDao {
 	 * @param request
 	 */
 	public static void init(ServletRequest request) {
+		/**
+		 * 1. HttpSession에서 memNo의 존재 여부 - 있으면 - 로그인 상태
+		 * 		 
+		 * 2. memNo가 있으면 -> 회원정보를 가져와서 
+		 *     request.setAttribute ....
+		 */
 		
+		if (request instanceof HttpServletRequest) {
+			HttpServletRequest req = (HttpServletRequest)request;
+		}
 	}
 	
 	/**

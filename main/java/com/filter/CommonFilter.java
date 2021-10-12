@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 import com.core.DB;
+import com.models.dao.MemberDao;
 
 /**
  * 사이트 공통 필터
@@ -29,6 +30,8 @@ public class CommonFilter implements Filter {
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+		/** 로그인 처리 */
+		MemberDao.init(request);
 		
 		/** 기준 URI */
 		String siteURL = request.getServletContext().getContextPath();
