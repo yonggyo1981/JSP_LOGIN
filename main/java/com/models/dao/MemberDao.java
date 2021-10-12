@@ -66,7 +66,7 @@ public class MemberDao {
 		 * 0. 필수 항목 체크(아이디, 비밀번호, 비밀번호 확인, 회원명) - O 
 		 * 1. 아이디 자리수(6~20), 영문, 숫자만 허용
 		 * 2. 비밀번호 자리수(8자리 이상), 복잡성(최소 영문1개 이상, 최소 숫자1개 이상, 최소 특수문자 1개 이상
-		 * 3. 아이디 중복 여부 체크
+		 * 3. 아이디 중복 여부 체크(O)
 		 * 4. 비밀번호 확인시 일치 여부  
 		 */
 		/** 필수 항목 체크 S */
@@ -117,5 +117,14 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		/** 아이디 중복 여부 체크 E */
+		
+		/** 비밀번호 확인시 일치 여부 S */
+		String memPwRe = request.getParameter("memPwRe");
+		if (!memPw.equals(memPwRe)) {
+			throw new AlertException("비밀번호 확인을 다시한번 해 주세요.");
+		}
+		/** 비밀번호 확인시 일치 여부 E */
 	}
 }
+
+
