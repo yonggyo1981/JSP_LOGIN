@@ -177,7 +177,20 @@ public class MemberDao {
 	 * @return
 	 */
 	public Member get(int memNo) {
-		
+		Member member = null;
+		String sql = "SELECT * FROM member WHERE memNo = ?";
+		try (Connection conn = DB.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, memNo);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				member = new Member(rs);
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+ 		
+		return member;
 	}
 	
 	/**
