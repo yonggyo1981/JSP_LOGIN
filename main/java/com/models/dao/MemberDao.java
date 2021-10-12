@@ -136,6 +136,22 @@ public class MemberDao {
 	 * @throws AlertException
 	 */
 	public boolean login(HttpServletRequest request, String memId, String memPw) throws AlertException {
+		/**
+		 * 1. 필수 항목 체크(아이디, 비번) - O
+		 * 2. 아이디로 회원정보를 조회 
+		 * 3. 회원 정보가 있으면 -> 비밀번호 해시 일치 여부 체크 
+		 * 4. 모든것이 일치하면 로그인 처리(세션에 memNo 값을 저장 - 전역에 유지)
+		 */
+		 /** 필수 항목 체크 S */
+		if (memId == null || memId.trim().equals("")) {
+			throw new AlertException("아이디를 입력해 주세요.");
+		}
+		
+		if (memPw == null || memPw.trim().equals("")) {
+			throw new AlertException("비밀번호를 입력해 주세요.");
+		}
+		/** 필수 항목 체크 E */
+		
 		
 		return false;
 	}
