@@ -15,6 +15,16 @@ import com.models.dto.Member;
  *
  */
 public class MemberDao {
+	
+	/**
+	 * 로그인을 한 경우 전역에 회원 정보 유지
+	 * 
+	 * @param request
+	 */
+	public static void init(HttpServletRequest request) {
+		
+	}
+	
 	/**
 	 * 회원 가입 처리 
 	 * 

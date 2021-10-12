@@ -17,6 +17,14 @@
 		<servlet-name>Member Login</servlet-name>
 		<url-pattern>/member/login</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Main</servlet-name>
+		<servlet-class>com.controller.MainController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Main</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 	<!--  서블릿 E  -->
 	<!--  필터 S -->
 	<filter>
