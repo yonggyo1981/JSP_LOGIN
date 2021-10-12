@@ -125,6 +125,27 @@ public class MemberDao {
 		}
 		/** 비밀번호 확인시 일치 여부 E */
 	}
+	
+	/**
+	 * 로그인 처리 
+	 * 
+	 * @param HttpServletRequest request - 세션 처리(HttpSession)
+	 * @param memId 
+	 * @param memPw 
+	 * @return true - 로그인 성공, false 로그인 실패
+	 * @throws AlertException
+	 */
+	public boolean login(HttpServletRequest request, String memId, String memPw) throws AlertException {
+		
+		return false;
+	}
+	
+	public boolean login(HttpServletRequest request) throws AlertException {
+		String memId = request.getParameter("memId");
+		String memPw = request.getParameter("memPw");
+		
+		return login(request, memId, memPw);
+	}
 }
 
 
