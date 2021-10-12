@@ -157,8 +157,10 @@ public class MemberDao {
 		memPw = memPw.trim();
 		
 		/** 아이디로 회원정보를 조회(아이디, 회원번호)  */
-		
-		
+		Member member = get(memId);
+		if (member == null) { // 회원정보가 존재 X 
+			throw new AlertException("회원정보가 없습니다.");
+		}
 		
 		return false;
 	}
