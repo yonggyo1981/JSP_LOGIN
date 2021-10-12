@@ -31,11 +31,11 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		try {
+		try { // 로그인 성공 
 			MemberDao dao = new MemberDao();
 			dao.login(request);
-			
-		} catch (AlertException e) {
+			out.print("<script>parent.location.href='../';</script>");
+		} catch (AlertException e) { // 로그인 실패 
 			out.print("<script>alert('" + e.getMessage() + "');</script>");
 		}
 	}
