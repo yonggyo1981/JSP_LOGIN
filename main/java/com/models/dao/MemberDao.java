@@ -1,6 +1,7 @@
 package com.models.dao;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 
 import com.core.*;
@@ -134,14 +135,13 @@ public class MemberDao {
 	 * @param HttpServletRequest request - 세션 처리(HttpSession)
 	 * @param memId 
 	 * @param memPw 
-	 * @return true - 로그인 성공, false 로그인 실패
 	 * @throws AlertException
 	 */
-	public boolean login(HttpServletRequest request, String memId, String memPw) throws AlertException {
+	public void login(HttpServletRequest request, String memId, String memPw) throws AlertException {
 		/**
 		 * 1. 필수 항목 체크(아이디, 비번) - O
-		 * 2. 아이디로 회원정보를 조회 - 별도의 메서드
-		 * 3. 회원 정보가 있으면 -> 비밀번호 해시 일치 여부 체크 
+		 * 2. 아이디로 회원정보를 조회 - 별도의 메서드 - O
+		 * 3. 회원 정보가 있으면 -> 비밀번호 해시 일치 여부 체크  - O 
 		 * 4. 모든것이 일치하면 로그인 처리(세션에 memNo 값을 저장 - 전역에 유지)
 		 */
 		 /** 필수 항목 체크 S */
@@ -162,14 +162,24 @@ public class MemberDao {
 			throw new AlertException("회원정보가 없습니다.");
 		}
 		
-		return false;
+		/** 비밀번호 해시 체크 S */
+		boolean match = BCrypt.checkpw(memPw, member.getMemPw());
+		if (!match) { // 비밀번호가 일치 하지 않을 경우 
+			throw new AlertException("비밀번호가 일치하지 않습니다.");
+		}
+		/** 비밀번호 해시 체크 E */
+		
+		/** 로그인 처리 S */
+		HttpSession session = request.getSession();
+		session.setAttribute("memNo", member.getMemNo());
+		/** 로그인 처리 E */
 	}
 	
-	public boolean login(HttpServletRequest request) throws AlertException {
+	public void login(HttpServletRequest request) throws AlertException {
 		String memId = request.getParameter("memId");
 		String memPw = request.getParameter("memPw");
 		
-		return login(request, memId, memPw);
+		login(request, memId, memPw);
 	}
 	
 	/**
