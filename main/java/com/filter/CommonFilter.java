@@ -24,7 +24,7 @@ public class CommonFilter implements Filter {
 	
 	@Override 
 	public void init(FilterConfig filterConfig) {
-		DB.init(filterConfig);
+		DB.init(filterConfig);		
 	}
 	
 	@Override

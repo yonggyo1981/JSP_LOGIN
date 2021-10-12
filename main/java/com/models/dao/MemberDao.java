@@ -87,9 +87,35 @@ public class MemberDao {
 		/** 필수 항목 체크 E */
 		/** 아이디 자리수, 영문 숫자로만 구성 체크 S */
 		String memId = request.getParameter("memId").trim();
-		if (memId.length() < 6 || memId.length() > 20 || memId.matches("[^a-zA-Z0-9]")) {
+		
+		if (memId.length() < 6 || memId.length() > 20) {
 			throw new AlertException("아이디는 영문자,숫자 6자리 이상 20자리 이하로 입력해 주세요.");
 		}
 		/** 아이디 자리수 체크 E */
+		
+		/** 비밀번호 자리수 체크 S */
+		String memPw = request.getParameter("memPw").trim();
+		if (memPw.length() < 8) {
+			throw new AlertException("비밀번호는 8자리 이상 입력해 주세요.");
+		}
+		/** 비밀전호 자리수 체크 E */
+		
+		/** 아이디 중복 여부 체크 S */
+		String sql = "SELECT COUNT(*) cnt FROM member WHERE memId = ?";
+		try (Connection conn = DB.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memId);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int cnt = rs.getInt("cnt");
+				if (cnt > 0) { // 이미 등록된 아이디인 경우 
+					throw new AlertException("이미 가입된 아이디 입니다 - " + memId);
+				}
+			}
+			rs.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		/** 아이디 중복 여부 체크 E */
 	}
 }
