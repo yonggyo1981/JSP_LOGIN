@@ -7,6 +7,8 @@ import com.core.*;
 import com.exception.*;
 import org.mindrot.jbcrypt.*;
 
+import com.models.dto.Member;
+
 /**
  * 회원 Model
  *
@@ -138,7 +140,7 @@ public class MemberDao {
 	public boolean login(HttpServletRequest request, String memId, String memPw) throws AlertException {
 		/**
 		 * 1. 필수 항목 체크(아이디, 비번) - O
-		 * 2. 아이디로 회원정보를 조회 
+		 * 2. 아이디로 회원정보를 조회 - 별도의 메서드
 		 * 3. 회원 정보가 있으면 -> 비밀번호 해시 일치 여부 체크 
 		 * 4. 모든것이 일치하면 로그인 처리(세션에 memNo 값을 저장 - 전역에 유지)
 		 */
@@ -151,6 +153,11 @@ public class MemberDao {
 			throw new AlertException("비밀번호를 입력해 주세요.");
 		}
 		/** 필수 항목 체크 E */
+		memId = memId.trim();
+		memPw = memPw.trim();
+		
+		/** 아이디로 회원정보를 조회(아이디, 회원번호)  */
+		
 		
 		
 		return false;
@@ -161,6 +168,26 @@ public class MemberDao {
 		String memPw = request.getParameter("memPw");
 		
 		return login(request, memId, memPw);
+	}
+	
+	/**
+	 * 회원 정보 조회 
+	 * 
+	 * @param memNo 회원번호
+	 * @return
+	 */
+	public Member get(int memNo) {
+		
+	}
+	
+	/**
+	 * 회원정보 조회
+	 * 
+	 * @param memId 회원 아이디 
+	 * @return
+	 */
+	public Member get(String memId) {
+		
 	}
 }
 
