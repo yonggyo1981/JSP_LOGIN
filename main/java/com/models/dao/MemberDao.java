@@ -2,6 +2,7 @@ package com.models.dao;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.ServletRequest;
 import java.sql.*;
 
 import com.core.*;
@@ -21,7 +22,7 @@ public class MemberDao {
 	 * 
 	 * @param request
 	 */
-	public static void init(HttpServletRequest request) {
+	public static void init(ServletRequest request) {
 		
 	}
 	
